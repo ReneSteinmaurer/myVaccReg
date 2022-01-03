@@ -4,96 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/myVaccApp_background_green"
-    tools:context=".MainActivity">
+    tools:context=".myVacc.MainActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView"
-        android:layout_width="43dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/home_icon"
-        android:backgroundTint="@color/myVaccApp_text_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck" />
+   <fragment
+       android:id="@+id/mainFragmentView"
+       android:name="at.rene.myvaccreg.myVacc.MainWindowFragment"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/roboto_light"
-        android:text="@string/title_text"
-        android:textColor="@color/myVaccApp_text_green"
-        android:textSize="34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="40dp"
-        android:text="Meine Impfungen"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/myVaccApp_button_green"
-        android:onClick="onMyVacc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
-        android:text="Impfungen Import/Export"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/myVaccApp_button_green"
-        android:layout_marginEnd="40dp"
-        android:onClick="onImpExpVacc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="40dp"
-        android:text="Impfstoff anlegen"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/myVaccApp_button_green"
-        android:onClick="onAddVacc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="40dp"
-        android:text="Krankheit anlegen"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/myVaccApp_button_green"
-        android:onClick="onAddVirus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
-
+   </fragment>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

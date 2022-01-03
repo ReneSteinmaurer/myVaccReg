@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import at.rene.myvaccreg.data.Vaccination;
+import at.rene.myvaccreg.myVacc.MyVacc;
 
 public class AddVacc extends AppCompatActivity {
     private ListView listView;

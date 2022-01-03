@@ -22,10 +22,10 @@
             android:name=".ImpExpVacc"
             android:exported="true" />
         <activity
-            android:name=".MyVacc"
+            android:name=".myVacc.MyVacc"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".myVacc.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
