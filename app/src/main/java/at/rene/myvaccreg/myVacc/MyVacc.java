@@ -31,7 +31,7 @@ public class MyVacc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_vacc);
+        setContentView(R.layout.fragment_my_vaccs);
         shownVaccList = new ArrayList<>();
 
         addBtn = findViewById(R.id.add_button);

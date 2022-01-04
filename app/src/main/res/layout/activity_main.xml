@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/myVaccApp_background_green"
     tools:context=".myVacc.MainActivity">
 
    <fragment
+       android:name="at.rene.myvaccreg.myVacc.BlankFragment"
        android:id="@+id/mainFragmentView"
-       android:name="at.rene.myvaccreg.myVacc.MainWindowFragment"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
-
    </fragment>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

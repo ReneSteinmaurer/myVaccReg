@@ -2,10 +2,11 @@ package at.rene.myvaccreg.myVacc;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import java.util.ArrayList;
 
@@ -18,10 +19,12 @@ import at.rene.myvaccreg.data.Vaccination;
 public class MainActivity extends AppCompatActivity {
     private MainWindowFragment mainWindowFragment;
     private MyVaccsFragment myVaccsFragment;
+    private LinearLayout vaccines;
     private Intent mainIntent;
     private Intent intent;
     private Vaccination vaccClass;
     private ArrayList<Vaccination> vaccinations;
+    private AppCompatButton displayFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         mainWindowFragment = new MainWindowFragment();
         myVaccsFragment = new MyVaccsFragment();
 
+        vaccines = findViewById(R.id.myVaccsList);
+
         // Log.d("MainActivity: ","Array index(6): "+vaccinations.get(6));
 
         getSupportFragmentManager().beginTransaction()
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Übergibt die Daten an die MyVacc Klasse
+     *
      * @param view
      */
     public void onMyVacc(View view) {
