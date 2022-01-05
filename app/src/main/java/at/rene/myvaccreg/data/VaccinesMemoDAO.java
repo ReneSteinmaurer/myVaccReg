@@ -31,14 +31,32 @@ public class VaccinesMemoDAO {
         StringBuffer buffer= new StringBuffer();
         while (cursor.moveToNext())
         {
-            String name =cursor.getString(cursor.getColumnIndex(dbHelper.COLUMN_NAME));
-            String desc =cursor.getString(cursor.getColumnIndex(dbHelper.COLUMN_DESCRIPTION));
-            String  date =cursor.getString(cursor.getColumnIndex(dbHelper.COLUMN_DATE));
-            buffer.append(name+ "   " + desc + "   " + date +" \n");
+            String name =cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.COLUMN_NAME));
+            String  desc =cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.COLUMN_DESCRIPTION));
+            String  date =cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.COLUMN_DATE));
+            buffer.append(name + "   " + desc +"  " + date + "\n");
         }
         return buffer.toString();
     }
 
+    public  int delete(String uname)
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String[] whereArgs ={uname};
+
+        int count =db.delete(dbHelper.TABLE_VACCINES ,dbHelper.COLUMN_NAME+" = ?",whereArgs);
+        return  count;
+    }
+
+    public int updateName(String oldName , String newName)
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(dbHelper.COLUMN_NAME,newName);
+        String[] whereArgs= {oldName};
+        int count =db.update(dbHelper.TABLE_VACCINES,contentValues, dbHelper.COLUMN_NAME+" = ?",whereArgs );
+        return count;
+    }
 
     public VaccinesMemoDAO(Context context) {
         Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den dbHelper.");

@@ -8,20 +8,20 @@ import android.util.Log;
 public class VaccinesMemoDBHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = VaccinesMemoDBHelper.class.getSimpleName();
 
-    public static final String DB_NAME = "shopping_list.db";
-    public static final int DB_VERSION = 1;
+    public static final String DB_NAME = "vaccines.db";
+    public static final int DB_VERSION = 4;
 
     public static final String TABLE_VACCINES = "vaccines_list";
-
-    public static final String COLUMN_NAME = "_id";
+    public static final String COLUMN_NAME = "name";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_DATE = "date";
+    private static final String DROP_TABLE ="DROP TABLE IF EXISTS "+TABLE_VACCINES;
 
     public static final String SQL_CREATE =
             "CREATE TABLE " + TABLE_VACCINES +
-                    "(" + COLUMN_NAME+ " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "("+ COLUMN_NAME+ " TEXT PRIMARY KEY, " +
                     COLUMN_DESCRIPTION + " TEXT NOT NULL, " +
-                    COLUMN_DATE + " INTEGER NOT NULL);";
+                    COLUMN_DATE + " TEXT NOT NULL);";
 
     public VaccinesMemoDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -41,6 +41,10 @@ public class VaccinesMemoDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        try {
+            db.execSQL(DROP_TABLE);
+            onCreate(db);
+        }catch (Exception e) {
+        }
     }
 }
