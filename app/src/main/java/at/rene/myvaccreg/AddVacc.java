@@ -58,7 +58,8 @@ public class AddVacc extends AppCompatActivity {
 
         vaccinationArrayList = (ArrayList<Vaccination>) getIntent().getSerializableExtra("VaccinationList");
 
-        listView = (ListView)findViewById(R.id.addVaccView);
+        // TODO Error
+        //listView = (ListView)findViewById(R.id.addVaccView);
 
         initVaccs();
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);

@@ -14,7 +14,11 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import at.rene.myvaccreg.R;
+import at.rene.myvaccreg.data.UserMemoDAO;
 import at.rene.myvaccreg.data.VaccinesMemo;
 import at.rene.myvaccreg.data.VaccinesMemoDAO;
 
@@ -26,6 +30,7 @@ public class MyVaccsFragment extends Fragment {
     private FloatingActionButton addVaccines;
     private LinearLayout vaccines;
     private AppCompatButton displayFood;
+    private AddVaccineToUser addVaccToUserf;
 
     private VaccinesMemoDAO dataSource;
 
@@ -49,11 +54,16 @@ public class MyVaccsFragment extends Fragment {
 
         dataSource = new VaccinesMemoDAO(getActivity());
 
+        addVaccToUserf = new AddVaccineToUser();
 
         addVaccines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.mainFragmentView, addVaccToUserf)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
@@ -64,9 +74,16 @@ public class MyVaccsFragment extends Fragment {
 
     }
 
+    /**
+     * Zeigt die Impfungen des Benutzers an
+     */
     public void displayUsersVaccines() {
-        VaccinesMemoDAO vaccinesMemoDAO = new VaccinesMemoDAO(getActivity());
+        UserMemoDAO userMemoDAO = new UserMemoDAO(getActivity());
         String[] data;
+
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println(formatter.format(date));
 
         /*vaccinesMemoDAO.insertData("Pfizer","Vaccine against the corona virus", "12-02-2020");
         vaccinesMemoDAO.insertData("Moderna","Vaccine against the corona virus", "12-02-2020");
@@ -83,22 +100,30 @@ public class MyVaccsFragment extends Fragment {
         vaccinesMemoDAO.insertData("HepatitisA", "Hepatitis-A-Viren (HAV) verursachen eine akute Entzündung des Lebergewebes. Die Hepatitis A ist zwar eine ernst zu nehmende Erkrankung, verläuft aber im Allgemeinen recht harmlos. Sie heilt meist vollständig aus und hinterlässt eine lebenslange Immunität", "10-04-2006");
         vaccinesMemoDAO.insertData("HepatitisC", "Hepatitis-A-Viren (HAV) verursachen eine akute Entzündung des Lebergewebes. Die Hepatitis A ist zwar eine ernst zu nehmende Erkrankung, verläuft aber im Allgemeinen recht harmlos. Sie heilt meist vollständig aus und hinterlässt eine lebenslange Immunität", "10-04-2006");*/
 
-        Log.d("Vaccines", vaccinesMemoDAO.getData());
+
+        /*userMemoDAO.insertData("Daniel","Anthrax", formatter.format(date));
+        userMemoDAO.insertData("Daniel","Cholera", formatter.format(date));
+        userMemoDAO.insertData("Daniel","Covid19", formatter.format(date));*/
+
+
+        Log.i("UserVaccine", userMemoDAO.getData());
 
         // Speichert die Daten in ein String-Array
-        data = vaccinesMemoDAO.getData().split("\n");
+        data = userMemoDAO.getData().split("\n");
 
         for (int i = 0; i < data.length; i++) {
-
+            String[] partialData;
             // Dient dazu aus dem String den Namen der Impfung herauszunehmen
-            data[i] = data[i].substring(0, data[i].indexOf(" "));
+
+            partialData = data[i].split(";");
+            String vaccine = partialData[0];
 
 
             displayFood = new AppCompatButton(getActivity());
 
             displayFood.setGravity(View.TEXT_ALIGNMENT_CENTER);
 
-            displayFood.setText(data[i]);
+            displayFood.setText(vaccine);
             displayFood.setTextSize(18);
             displayFood.setHeight(160);
             displayFood.setBackgroundResource(R.drawable.add_button_blue);

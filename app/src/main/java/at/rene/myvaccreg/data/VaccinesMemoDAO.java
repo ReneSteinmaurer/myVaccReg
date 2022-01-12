@@ -12,13 +12,15 @@ public class VaccinesMemoDAO {
     private SQLiteDatabase database;
     private VaccinesMemoDBHelper dbHelper;
 
-    public long insertData(String name, String desc, String date)
+    public long insertData(String name, String desc, String date, String illness, String manufacturer)
     {
         SQLiteDatabase dbb = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.COLUMN_NAME, name);
         contentValues.put(dbHelper.COLUMN_DESCRIPTION, desc);
         contentValues.put(dbHelper.COLUMN_DATE, date);
+        contentValues.put(dbHelper.COLUMN_ILLNESS, illness);
+        contentValues.put(dbHelper.COLUMN_MANUFACTURER, manufacturer);
         long id = dbb.insert(dbHelper.TABLE_VACCINES, null , contentValues);
         return id;
     }
@@ -26,7 +28,7 @@ public class VaccinesMemoDAO {
     public String getData()
     {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String[] columns = {dbHelper.COLUMN_NAME,dbHelper.COLUMN_DESCRIPTION,dbHelper.COLUMN_DATE};
+        String[] columns = {dbHelper.COLUMN_NAME,dbHelper.COLUMN_DESCRIPTION,dbHelper.COLUMN_DATE, dbHelper.COLUMN_ILLNESS, dbHelper.COLUMN_MANUFACTURER};
         Cursor cursor =db.query(dbHelper.TABLE_VACCINES,columns,null,null,null,null,null);
         StringBuffer buffer= new StringBuffer();
         while (cursor.moveToNext())
@@ -34,7 +36,9 @@ public class VaccinesMemoDAO {
             String name =cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.COLUMN_NAME));
             String  desc =cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.COLUMN_DESCRIPTION));
             String  date =cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.COLUMN_DATE));
-            buffer.append(name + "   " + desc +"  " + date + "\n");
+            String  illness =cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.COLUMN_ILLNESS));
+            String  manufacturer =cursor.getString(cursor.getColumnIndexOrThrow(dbHelper.COLUMN_MANUFACTURER));
+            buffer.append(name + ";" + desc +";" + date + "\n");
         }
         return buffer.toString();
     }
