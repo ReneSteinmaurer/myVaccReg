@@ -12,14 +12,14 @@ import java.util.ArrayList;
 
 import at.rene.myvaccreg.ImpExpVacc;
 import at.rene.myvaccreg.R;
-import at.rene.myvaccreg.addVirus.AddVirusFragment;
+import at.rene.myvaccreg.addVirus.DisplayVirusesFragment;
 import at.rene.myvaccreg.data.Vaccination;
 
 public class MainActivity extends AppCompatActivity {
     private MainWindowFragment mainWindowFragment;
     private AddNewVaccination addNewVaccination;
     private MyVaccsFragment myVaccsFragment;
-    private AddVirusFragment addVirusFragment;
+    private DisplayVirusesFragment displayVirusesFragment;
     private LinearLayout vaccines;
     private Intent mainIntent;
     private Intent intent;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mainWindowFragment = new MainWindowFragment();
         myVaccsFragment = new MyVaccsFragment();
         addNewVaccination = new AddNewVaccination();
-        addVirusFragment = new AddVirusFragment();
+        displayVirusesFragment = new DisplayVirusesFragment();
 
         vaccines = findViewById(R.id.myVaccsRecyclerView);
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAddVirus(View view) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.mainFragmentView, addVirusFragment)
+                .replace(R.id.mainFragmentView, displayVirusesFragment)
                 .addToBackStack(null)
                 .commit();
     }

@@ -16,6 +16,9 @@ public class Virus {
     @ColumnInfo(name = "desc")
     public String desc;
 
+    @ColumnInfo(name = "cateogry")
+    public String category;
+
     public String getName() {
         return name;
     }
@@ -30,5 +33,13 @@ public class Virus {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

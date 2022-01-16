@@ -13,6 +13,7 @@ public class MyVaccHolder extends RecyclerView.ViewHolder {
     public TextView vaccDesc;
     public TextView vaccDate;
     public TextView renewDate;
+    public TextView vaccVirus;
 
     public MyVaccHolder(@NonNull View itemView) {
         super(itemView);
@@ -21,6 +22,7 @@ public class MyVaccHolder extends RecyclerView.ViewHolder {
         vaccDesc = itemView.findViewById(R.id.vaccDesc);
         vaccDate = itemView.findViewById(R.id.vaccDate);
         renewDate = itemView.findViewById(R.id.vaccRenewDate);
+        vaccVirus = itemView.findViewById(R.id.vaccVirus);
     }
 
 }

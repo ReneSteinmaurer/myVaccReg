@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import at.rene.myvaccreg.R;
-import at.rene.myvaccreg.data.Virus;
+import at.rene.myvaccreg.roomdb.Virus;
 
 public class AddVirusAdapter extends RecyclerView.Adapter<AddVirusHolder> {
     private Context context;
-    private ArrayList<Virus> viruses;
+    private List<Virus> viruses;
 
-    public AddVirusAdapter(Context context, ArrayList<Virus> viruses) {
+    public AddVirusAdapter(Context context, List<Virus> viruses) {
         this.context = context;
         this.viruses = viruses;
     }
@@ -34,6 +34,7 @@ public class AddVirusAdapter extends RecyclerView.Adapter<AddVirusHolder> {
     public void onBindViewHolder(@NonNull AddVirusHolder addVirusHolder, int i) {
         addVirusHolder.virusName.setText(viruses.get(i).getName());
         addVirusHolder.virusDesc.setText(viruses.get(i).getDesc());
+        addVirusHolder.virusCategory.setText("Virus Kategorie: " + viruses.get(i).getCategory());
     }
 
     @Override

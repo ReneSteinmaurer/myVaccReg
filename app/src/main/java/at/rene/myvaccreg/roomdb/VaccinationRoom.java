@@ -22,6 +22,9 @@ public class VaccinationRoom {
     @ColumnInfo(name = "renew_date")
     public String renewDate;
 
+    @ColumnInfo(name = "virus")
+    public String virus;
+
 
     public String getName() {
         return name;
@@ -53,5 +56,13 @@ public class VaccinationRoom {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getVirus() {
+        return virus;
+    }
+
+    public void setVirus(String virus) {
+        this.virus = virus;
     }
 }
