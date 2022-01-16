@@ -70,7 +70,6 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         desc = getActivity().findViewById(R.id.editTextDescVaccine);
         date = getActivity().findViewById(R.id.editTextDateVaccine);
         date.setInputType(InputType.TYPE_NULL);
-        illness = getActivity().findViewById(R.id.editTextIllnessVaccine);
         manufacturer = getActivity().findViewById(R.id.editTextManufacturerVaccine);
         chooseVirusSpinner = getActivity().findViewById(R.id.spinnerViruses);
 
@@ -125,6 +124,7 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         vaccination.name = name;
         vaccination.desc = desc;
         vaccination.renewDate = renewDate;
+        vaccination.virus = chooseVirusSpinner.getSelectedItem().toString();
 
         vaccinationList = myVaccRegDb.vaccinationDao().getAllVaccines();
 
@@ -149,8 +149,7 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
 
     private boolean isFilled() {
         boolean isFilled = false;
-        if (!name.getText().toString().equals("") && !desc.getText().toString().equals("")
-                && !illness.getText().toString().equals("") && !date.toString().equals("")
+        if (!name.getText().toString().equals("") && !desc.getText().toString().equals("") && !date.toString().equals("")
                 && !manufacturer.getText().toString().equals("")) {
             isFilled = true;
         }

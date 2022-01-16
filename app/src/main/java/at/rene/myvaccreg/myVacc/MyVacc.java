@@ -13,7 +13,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-import at.rene.myvaccreg.AddVacc;
 import at.rene.myvaccreg.R;
 import at.rene.myvaccreg.data.Vaccination;
 import at.rene.myvaccreg.data.VaccinationAdapterRecycleView;
@@ -88,10 +87,6 @@ public class MyVacc extends AppCompatActivity {
      * @param view
      */
     public void onAddVaccine(View view) {
-        intent = new Intent(this, AddVacc.class);
-        intent.putExtra("VaccinationList", vaccinationArrayList);
 
-        startActivity(intent);
-        finish();
     }
 }

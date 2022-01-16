@@ -36,6 +36,7 @@ public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
         myVaccHolder.vaccDesc.setText(vaccinations.get(i).getDesc());
         myVaccHolder.vaccDate.setText(vaccinations.get(i).getDate());
         myVaccHolder.renewDate.setText("Auffrischungs-Termin: " + vaccinations.get(i).getRenewDate());
+        myVaccHolder.vaccVirus.setText("Schützt vor: " + vaccinations.get(i).getVirus());
     }
 
     @Override
