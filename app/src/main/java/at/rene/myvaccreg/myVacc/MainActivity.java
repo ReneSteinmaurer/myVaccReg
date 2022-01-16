@@ -10,15 +10,16 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import java.util.ArrayList;
 
-import at.rene.myvaccreg.AddVirus;
 import at.rene.myvaccreg.ImpExpVacc;
 import at.rene.myvaccreg.R;
+import at.rene.myvaccreg.addVirus.AddVirusFragment;
 import at.rene.myvaccreg.data.Vaccination;
 
 public class MainActivity extends AppCompatActivity {
     private MainWindowFragment mainWindowFragment;
     private AddNewVaccination addNewVaccination;
     private MyVaccsFragment myVaccsFragment;
+    private AddVirusFragment addVirusFragment;
     private LinearLayout vaccines;
     private Intent mainIntent;
     private Intent intent;
@@ -37,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
         mainWindowFragment = new MainWindowFragment();
         myVaccsFragment = new MyVaccsFragment();
         addNewVaccination = new AddNewVaccination();
+        addVirusFragment = new AddVirusFragment();
 
-        vaccines = findViewById(R.id.myVaccsList);
+        vaccines = findViewById(R.id.myVaccsRecyclerView);
 
         // Log.d("MainActivity: ","Array index(6): "+vaccinations.get(6));
 
@@ -76,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAddVirus(View view) {
-        startActivity(new Intent(this, AddVirus.class));
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.mainFragmentView, addVirusFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

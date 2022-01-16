@@ -13,9 +13,6 @@
             android:name=".AddVacc"
             android:exported="true" />
         <activity
-            android:name=".AddVirus"
-            android:exported="true" />
-        <activity
             android:name=".CreateVacc"
             android:exported="true" />
         <activity

@@ -6,19 +6,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import at.rene.myvaccreg.R;
 import at.rene.myvaccreg.data.UserMemoDAO;
+import at.rene.myvaccreg.data.Vaccination;
 import at.rene.myvaccreg.data.VaccinesMemo;
 import at.rene.myvaccreg.data.VaccinesMemoDAO;
 
@@ -27,10 +30,13 @@ import at.rene.myvaccreg.data.VaccinesMemoDAO;
  * create an instance of this fragment.
  */
 public class MyVaccsFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private MyVaccAdapter myVaccAdapter;
     private FloatingActionButton addVaccines;
-    private LinearLayout vaccines;
+    //private LinearLayout vaccines;
     private AppCompatButton displayFood;
     private AddVaccineToUser addVaccToUserf;
+    private ArrayList<Vaccination> myVaccsArrayList;
 
     private VaccinesMemoDAO dataSource;
 
@@ -43,20 +49,32 @@ public class MyVaccsFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        myVaccsArrayList = new ArrayList<>();
 
         addVaccines = getActivity().findViewById(R.id.add_button);
-        vaccines = getActivity().findViewById(R.id.myVaccsList);
+        //vaccines = getActivity().findViewById(R.id.myVaccsRecyclerView);
+        recyclerView = getActivity().findViewById(R.id.myVaccsRecyclerView);
 
-        displayUsersVaccines();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        // displayUsersVaccines();
 
         VaccinesMemo testMemo = new VaccinesMemo("Covid 19", "Pfizer", "02-12-2021");
         Log.d("LOG_TAG", "Inhalt der Testmemo: " + testMemo.toString());
 
         dataSource = new VaccinesMemoDAO(getActivity());
-
         addVaccToUserf = new AddVaccineToUser();
 
-        addVaccines.setOnClickListener(new View.OnClickListener() {
+        myVaccsArrayList.add(new Vaccination("Covid 19", "Die Erkrankung, die das Virus hervorruft, wird als COVID-19 bezeichnet.","01-08-2020","Biontech Pfizer", true));
+        myVaccsArrayList.add(new Vaccination("FSME", "Bei FSME handelt es sich um eine Gehirn-, Hirnhaut- oder Rückenmarkentzündung, die durch Viren verursacht wird.", "23-04-2004","Viralax",true));
+        myVaccsArrayList.add(new Vaccination("Cholera", "Cholera ist eine Infektionskrankheit und zählt zu den meldepflichtigen Infektionskrankheiten.", "06-07-2002", "HeroWit",false));
+        myVaccsArrayList.add(new Vaccination("Anthrax", "Vaxchora, Anthrax (Milzbrand) ist primär eine Erkrankung von Huftieren wie Rindern oder Schafen.", "30-10-2016", "Moderna", true));
+
+
+        myVaccAdapter = new MyVaccAdapter(getActivity(), myVaccsArrayList);
+        recyclerView.setAdapter(myVaccAdapter);
+
+        /*addVaccines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -65,7 +83,7 @@ public class MyVaccsFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
-        });
+        });*/
 
         // Buttons und Views hinzufügen
     }
@@ -139,8 +157,8 @@ public class MyVaccsFragment extends Fragment {
                 }
             });
 
-            vaccines.addView(displayFood);
-            vaccines.invalidate();
+            //vaccines.addView(displayFood);
+            //vaccines.invalidate();
 
         }
     }

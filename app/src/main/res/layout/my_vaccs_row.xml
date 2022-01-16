@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/vaccinePic"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/vaccine_img"></ImageView>
+
+        <TextView
+            android:id="@+id/vaccTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/vaccinePic"
+            android:layout_toRightOf="@id/vaccinePic"
+            android:text="Title"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/vaccDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/myVaccApp_background_green"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="10-01-2022"
+            android:layout_toRightOf="@id/vaccTitle"
+            android:layout_toEndOf="@id/vaccTitle"
+            android:layout_marginLeft="20dp">
+        </TextView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/vaccDesc"
+            android:text="Description"
+            android:textSize="18sp"
+            android:textColor="#a9a9a9"
+            android:layout_toRightOf="@id/vaccinePic"
+            android:layout_toEndOf="@id/vaccinePic"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/vaccTitle">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/vaccRenewDate"
+            android:textSize="18sp"
+            android:textColor="#a9a9a9"
+            android:text="Auffrischungs-Termin: 24-05-2025"
+            android:layout_below="@id/vaccDesc"
+            android:layout_toRightOf="@id/vaccinePic"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp">
+
+        </TextView>
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
