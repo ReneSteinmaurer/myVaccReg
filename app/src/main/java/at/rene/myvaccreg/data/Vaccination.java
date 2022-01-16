@@ -1,16 +1,24 @@
 package at.rene.myvaccreg.data;
 
-import java.io.Serializable;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.ArrayList;
 
-public class Vaccination implements Serializable {
+@Entity
+public class Vaccination {
+    @PrimaryKey
+    @NonNull
     private String name;
     private String desc;
     private String date;
     private boolean active;
     private String vaccination;
-    private ArrayList<Vaccination> vaccs;
+    private ArrayList<Vaccination> vaccs = new ArrayList<>();
 
+    @Ignore
     public Vaccination(String name, String desc, String date, String vaccination, boolean active) {
         this.name = name;
         this.desc = desc;
@@ -27,8 +35,7 @@ public class Vaccination implements Serializable {
         return vaccination;
     }
 
-    public ArrayList<Vaccination> initVaccines() {
-        ArrayList<Vaccination> vaccs = new ArrayList<>();
+    public ArrayList<Vaccination> initVaccines() { ;
         vaccs.add(new Vaccination("Covid19", "Die Erkrankung, die das Virus hervorruft, wird als COVID-19 bezeichnet. Die Beschwerden betreffen nicht nur - wie ursprünglich angenommen - die Atemwege, es ist ein breites Spektrum an Symptomen möglich.", "19-10-2020", "Impfstoff: Biontech Pfizer",true));
         vaccs.add(new Vaccination("Anthrax", "Vaxchora, Anthrax (Milzbrand) ist primär eine Erkrankung von Huftieren wie Rindern oder Schafen, die durch das Bakterium Bacillus anthracis verursacht wird. Dieses bildet Sporen, die unter günstigen Bedingungen mehrere Jahrzehnte in der Umwelt überleben können.", "30-10-2016", "Impfstoff: Hammervacc BAC",false));
         vaccs.add(new Vaccination("Cholera", "AVA, Cholera ist eine Infektionskrankheit, die durch den Erreger Vibrio cholerae hervorgerufen wird. Dieser führt zu schweren Durchfällen und erfordert eine rasche Behandlung. Cholera zählt zu den meldepflichtigen Infektionskrankheiten.", "06-07-2002", "Impfstoff: Zieradik CHO",false));

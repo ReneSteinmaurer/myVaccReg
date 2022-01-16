@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import at.rene.myvaccreg.R;
-import at.rene.myvaccreg.data.Vaccination;
+import at.rene.myvaccreg.roomdb.VaccinationRoom;
 
 public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
     private Context context;
-    private ArrayList<Vaccination> vaccinations;
+    private List<VaccinationRoom> vaccinations;
 
-    public MyVaccAdapter(Context context, ArrayList<Vaccination> vaccinations) {
+    public MyVaccAdapter(Context context, List<VaccinationRoom> vaccinations) {
         this.context = context;
         this.vaccinations = vaccinations;
     }
@@ -35,7 +35,7 @@ public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
         myVaccHolder.vaccTitle.setText(vaccinations.get(i).getName());
         myVaccHolder.vaccDesc.setText(vaccinations.get(i).getDesc());
         myVaccHolder.vaccDate.setText(vaccinations.get(i).getDate());
-
+        myVaccHolder.renewDate.setText("Auffrischungs-Termin: " + vaccinations.get(i).getRenewDate());
     }
 
     @Override
