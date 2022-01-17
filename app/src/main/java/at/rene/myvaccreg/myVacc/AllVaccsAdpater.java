@@ -71,6 +71,11 @@ public class AllVaccsAdpater extends RecyclerView.Adapter<AllVaccsHolder> {
         });
     }
 
+    public void filteredList(List<VaccinationRoom> filteredList) {
+        vaccinations = filteredList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return vaccinations.size();

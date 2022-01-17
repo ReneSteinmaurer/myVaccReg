@@ -17,7 +17,7 @@ import at.rene.myvaccreg.roomdb.VaccinationRoom;
 
 public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
     private final Context context;
-    private final List<VaccinationRoom> vaccinations;
+    private List<VaccinationRoom> vaccinations;
     private MyVaccRegDb db;
 
     public MyVaccAdapter(Context context, List<VaccinationRoom> vaccinations) {
