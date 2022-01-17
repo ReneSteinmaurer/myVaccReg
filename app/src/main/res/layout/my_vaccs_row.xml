@@ -4,12 +4,13 @@
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
-    app:cardElevation="3dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:id="@+id/vaccBackground"
+        android:background="@color/cardview_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
@@ -20,9 +21,17 @@
             android:layout_height="75dp"
             android:src="@drawable/vaccine_img"></ImageView>
 
+        <ImageView
+            android:id="@+id/vaccDelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/vaccTitle"
+            android:layout_marginLeft="150dp"
+            android:src="@drawable/delete_img"/>
+
         <TextView
             android:id="@+id/vaccTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="10dp"
@@ -69,7 +78,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@id/vaccDate">
+            android:layout_below="@id/vaccVirus">
         </TextView>
 
         <TextView
@@ -86,14 +95,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/vaccDesc">
+            android:layout_below="@id/vaccDate">
         </TextView>
 
         <TextView
             android:id="@+id/vaccRenewDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/vaccVirus"
+            android:layout_below="@id/vaccManufacturer"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:visibility="gone"
@@ -102,6 +111,20 @@
             android:textColor="#a9a9a9"
             android:textSize="18sp">
 
+        </TextView>
+
+        <TextView
+            android:id="@+id/vaccManufacturer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vaccDesc"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/vaccinePic"
+            android:textSize="18sp"
+            android:text="Manufacturer"
+            android:visibility="gone"
+            android:textColor="#a9a9a9">
         </TextView>
 
 

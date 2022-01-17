@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -39,6 +39,7 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
     private EditText date;
     private EditText manufacturer;
     private EditText illness;
+    private TextView errorView;
     private DatePickerDialog picker;
     private Spinner chooseVirusSpinner;
     private MyVaccRegDb db;
@@ -72,6 +73,8 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         date.setInputType(InputType.TYPE_NULL);
         manufacturer = getActivity().findViewById(R.id.editTextManufacturerVaccine);
         chooseVirusSpinner = getActivity().findViewById(R.id.spinnerViruses);
+        errorView = getActivity().findViewById(R.id.errorTextview);
+        errorView.setVisibility(View.INVISIBLE);
 
         chooseVirusSpinner.setOnItemSelectedListener(this);
 
@@ -105,9 +108,13 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
 
         addVaccine.setOnClickListener(v -> {
             if (isFilled()) {
-                saveNewVaccine(name.getText().toString(), desc.getText().toString(), date.getText().toString());
+                saveNewVaccine(name.getText().toString(), desc.getText().toString(),
+                        date.getText().toString(), manufacturer.getText().toString());
+
+                errorView.setVisibility(View.INVISIBLE);
             } else {
-                Toast.makeText(getActivity(),"Felder ausfüllen!", Toast.LENGTH_LONG);
+                errorView.setVisibility(View.VISIBLE);
+                Log.i("VACC", "ERROR");
             }
 
         });
@@ -115,7 +122,7 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
     }
 
     // TODO: Die Krankheit vor der die Impfung schützt muss noch hinzugefügt werden in der DB!
-    private void saveNewVaccine(String name, String desc, String renewDate) {
+    private void saveNewVaccine(String name, String desc, String renewDate, String manufacturer) {
         boolean exists = false;
         MyVaccRegDb myVaccRegDb = MyVaccRegDb.getDbInstance(getActivity().getApplicationContext());
         List<VaccinationRoom> vaccinationList = new ArrayList<>();
@@ -125,6 +132,7 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         vaccination.desc = desc;
         vaccination.renewDate = renewDate;
         vaccination.virus = chooseVirusSpinner.getSelectedItem().toString();
+        vaccination.manufacturer = manufacturer;
 
         vaccinationList = myVaccRegDb.vaccinationDao().getAllVaccines();
 
@@ -140,17 +148,13 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         if (!exists) {
             clearEditText();
             myVaccRegDb.vaccinationDao().insertVaccine(vaccination);
-        } else {
-            // TODO: wenn vorhanden --> error Text
-
         }
-
     }
 
     private boolean isFilled() {
         boolean isFilled = false;
         if (!name.getText().toString().equals("") && !desc.getText().toString().equals("") && !date.toString().equals("")
-                && !manufacturer.getText().toString().equals("")) {
+                && !manufacturer.getText().toString().equals("") && chooseVirusSpinner.getSelectedItem() != null) {
             isFilled = true;
         }
 
@@ -160,7 +164,6 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
     private void clearEditText() {
         name.setText("");
         desc.setText("");
-        date.setText("");
         date.setText("");
         manufacturer.setText("");
     }

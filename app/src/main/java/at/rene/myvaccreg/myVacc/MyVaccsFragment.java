@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,8 +29,8 @@ public class MyVaccsFragment extends Fragment {
     private RecyclerView recyclerView;
     private MyVaccAdapter myVaccAdapter;
     private FloatingActionButton addVaccines;
-    //private LinearLayout vaccines;
-    private AppCompatButton displayFood;
+    private ImageView deleteImg;
+
     private AddVaccineToUser addVaccToUserf;
     private List<VaccinationUser> userVaccs;
     private List<VaccinationRoom> allVaccs;
@@ -77,16 +77,11 @@ public class MyVaccsFragment extends Fragment {
         myVaccAdapter = new MyVaccAdapter(getActivity(), displayedVaccs);
         recyclerView.setAdapter(myVaccAdapter);
 
-        addVaccines.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        addVaccines.setOnClickListener(v ->
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.mainFragmentView, addVaccToUserf)
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
+                .replace(R.id.mainFragmentView, addVaccToUserf)
+                .addToBackStack(null)
+                .commit());
 
         // Buttons und Views hinzufügen
     }

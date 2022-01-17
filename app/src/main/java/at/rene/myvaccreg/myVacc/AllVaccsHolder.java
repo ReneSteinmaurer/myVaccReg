@@ -12,6 +12,7 @@ public class AllVaccsHolder extends RecyclerView.ViewHolder {
     public TextView vaccTitle;
     public TextView vaccDesc;
     public TextView vaccRenewDate;
+    public TextView vaccManufacturer;
 
     public AllVaccsHolder(@NonNull View itemView) {
         super(itemView);
@@ -19,5 +20,6 @@ public class AllVaccsHolder extends RecyclerView.ViewHolder {
         vaccTitle = itemView.findViewById(R.id.vaccTitle);
         vaccDesc = itemView.findViewById(R.id.vaccDesc);
         vaccRenewDate = itemView.findViewById(R.id.vaccRenewDate);
+        vaccManufacturer = itemView.findViewById(R.id.vaccManufacturer);
     }
 }
