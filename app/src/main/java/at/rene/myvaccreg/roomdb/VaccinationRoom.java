@@ -28,6 +28,18 @@ public class VaccinationRoom {
     @ColumnInfo(name = "manufacturer")
     public String manufacturer;
 
+    public VaccinationRoom () {
+        this ("","","","","","");
+    }
+
+    public VaccinationRoom(String name, String desc, String date, String renewDate, String virus, String manufacturer) {
+        this.name = name;
+        this.desc = desc;
+        this.date = date;
+        this.renewDate = renewDate;
+        this.virus = virus;
+        this.manufacturer = manufacturer;
+    }
 
     public String getName() {
         return name;
