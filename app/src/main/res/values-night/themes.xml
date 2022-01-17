@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.MyVaccReg" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/myVaccApp_background_green</item>
-        <item name="colorPrimaryVariant">@color/myVaccApp_background_green</item>
-        <item name="colorOnPrimary">@color/myVaccApp_background_green</item>
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryVariant">#121212</item>
+        <item name="colorOnPrimary">#00BCD4</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/myVaccApp_text_green</item>
-        <item name="colorSecondaryVariant">@color/myVaccApp_background_green</item>
+        <item name="colorSecondaryVariant">#3E3E3E</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>

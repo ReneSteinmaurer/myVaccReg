@@ -1,6 +1,7 @@
 package at.rene.myvaccreg.myVacc;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ public class MyVaccHolder extends RecyclerView.ViewHolder {
     public TextView vaccDate;
     public TextView renewDate;
     public TextView vaccVirus;
+    public TextView vaccManufacturer;
+    public ImageView deleteImg;
 
     public MyVaccHolder(@NonNull View itemView) {
         super(itemView);
@@ -23,6 +26,8 @@ public class MyVaccHolder extends RecyclerView.ViewHolder {
         vaccDate = itemView.findViewById(R.id.vaccDate);
         renewDate = itemView.findViewById(R.id.vaccRenewDate);
         vaccVirus = itemView.findViewById(R.id.vaccVirus);
+        vaccManufacturer = itemView.findViewById(R.id.vaccManufacturer);
+        deleteImg = itemView.findViewById(R.id.vaccDelete);
     }
 
 }

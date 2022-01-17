@@ -4,33 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/myVaccApp_background_green">
+    android:background="@color/myVaccApp_background_dark">
 
 
     <EditText
         android:id="@+id/editTextManufacturerVaccine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/custom_edittext"
         android:ems="10"
         android:hint="Hersteller"
-        android:paddingLeft="10dp"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDateVaccine" />
 
     <!-- editTextDateVaccine -->
     <EditText
         android:id="@+id/editTextDateVaccine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/custom_edittext"
+        android:drawableStart="@drawable/ic_baseline_edit_calendar_24"
         android:ems="10"
+        android:drawablePadding="10dp"
         android:hint="Nächster Termin"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerViruses" />
 
@@ -38,25 +46,31 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
         android:layout_marginTop="50dp"
         android:text="Impfung hinzufügen"
-        android:textColor="@color/myVaccApp_text_green"
-        android:textSize="26sp"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextVaccineName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
         android:id="@+id/editTextVaccineName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/custom_edittext"
+        android:drawablePadding="12dp"
         android:ems="10"
         android:hint="Name"
-        android:paddingLeft="10dp"
         android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -64,7 +78,7 @@
         android:id="@+id/addNewVaccineBtn"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="60dp"
         android:clickable="true"
         android:src="@drawable/add_floatbutton"
         android:text="+   hinzufügen"
@@ -75,25 +89,43 @@
 
     <EditText
         android:id="@+id/editTextDescVaccine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/custom_edittext"
         android:ems="10"
+        android:hint="Beschreibung"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
-        android:hint="Beschreibung"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextVaccineName" />
 
     <Spinner
         android:id="@+id/spinnerViruses"
-        android:layout_width="169dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescVaccine" />
+
+    <TextView
+        android:id="@+id/errorTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alle Felder müssen ausgefüllt sein!"
+        android:visibility="invisible"
+        android:textSize="16sp"
+        android:textColor="#AF1010"
+        app:layout_constraintBottom_toTopOf="@+id/addNewVaccineBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextManufacturerVaccine" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

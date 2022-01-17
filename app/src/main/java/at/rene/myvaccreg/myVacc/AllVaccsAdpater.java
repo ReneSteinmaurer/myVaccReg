@@ -45,7 +45,8 @@ public class AllVaccsAdpater extends RecyclerView.Adapter<AllVaccsHolder> {
 
         allVaccsHolder.vaccTitle.setText(vaccinations.get(i).getName());
         allVaccsHolder.vaccDesc.setText(vaccinations.get(i).getDesc());
-        allVaccsHolder.vaccRenewDate.setText("Auffrischungs-Termin: " + vaccinations.get(i).getRenewDate());
+        allVaccsHolder.vaccRenewDate.setText("Auffrischung: " + vaccinations.get(i).getRenewDate());
+        allVaccsHolder.vaccManufacturer.setText("Hersteller: " + vaccinations.get(i).getManufacturer());
 
         allVaccsHolder.itemView.setOnClickListener(v -> {
             boolean hasVaccine = false;

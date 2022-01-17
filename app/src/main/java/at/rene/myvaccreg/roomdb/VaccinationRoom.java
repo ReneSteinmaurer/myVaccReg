@@ -25,6 +25,9 @@ public class VaccinationRoom {
     @ColumnInfo(name = "virus")
     public String virus;
 
+    @ColumnInfo(name = "manufacturer")
+    public String manufacturer;
+
 
     public String getName() {
         return name;
@@ -64,5 +67,13 @@ public class VaccinationRoom {
 
     public void setVirus(String virus) {
         this.virus = virus;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }

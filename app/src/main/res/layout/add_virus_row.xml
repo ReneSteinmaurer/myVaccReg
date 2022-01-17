@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
-    app:cardElevation="3dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/cardview_dark"
         android:padding="16dp">
 
         <ImageView
@@ -39,6 +41,7 @@
             android:id="@+id/virusDesc"
             android:text="Description"
             android:textSize="18sp"
+            android:visibility="gone"
             android:textColor="#a9a9a9"
             android:layout_toRightOf="@id/virusPic"
             android:layout_toEndOf="@id/virusPic"
@@ -49,20 +52,19 @@
         </TextView>
 
         <TextView
+            android:id="@+id/virusCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/virusCategory"
-            android:text="Virus Category: "
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#a9a9a9"
-            android:layout_toRightOf="@id/virusPic"
-            android:layout_toEndOf="@id/virusPic"
-            android:layout_marginLeft="10dp"
+            android:layout_below="@id/virusDesc"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/virusDesc">
-        </TextView>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@id/virusPic"
+            android:layout_toRightOf="@id/virusPic"
+            android:text="Virus Category: "
+            android:textColor="#a9a9a9"
+            android:textSize="18sp"
+            android:textStyle="bold"></TextView>
 
 
 

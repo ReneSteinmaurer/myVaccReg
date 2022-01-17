@@ -35,6 +35,14 @@ public class AddVirusAdapter extends RecyclerView.Adapter<AddVirusHolder> {
         addVirusHolder.virusName.setText(viruses.get(i).getName());
         addVirusHolder.virusDesc.setText(viruses.get(i).getDesc());
         addVirusHolder.virusCategory.setText("Virus Kategorie: " + viruses.get(i).getCategory());
+
+        addVirusHolder.itemView.setOnClickListener(v -> {
+
+            if (addVirusHolder.virusDesc.getVisibility() == View.GONE)
+                addVirusHolder.virusDesc.setVisibility(View.VISIBLE);
+            else addVirusHolder.virusDesc.setVisibility(View.GONE);
+
+        });
     }
 
     @Override

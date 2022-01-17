@@ -4,12 +4,13 @@
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
-    app:cardElevation="3dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:id="@+id/vaccBackground"
+        android:background="@color/cardview_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
@@ -59,6 +60,20 @@
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/vaccinePic"
             android:text="Auffrischungs-Termin: 24-05-2025"
+            android:textColor="#a9a9a9"
+            android:textSize="18sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/vaccManufacturer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vaccRenewDate"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/vaccinePic"
+            android:text="Hersteller: "
             android:textColor="#a9a9a9"
             android:textSize="18sp">
 

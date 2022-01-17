@@ -13,6 +13,9 @@ public interface VaccinationUserDao {
     @Query("select * from vaccinationuser")
     List<VaccinationUser> getAllVaccinations();
 
+    @Query("delete from vaccinationuser where vaccine=:userInput")
+    void deleteVacc(String userInput);
+
     @Insert
     void addVaccination(VaccinationUser vaccine);
 

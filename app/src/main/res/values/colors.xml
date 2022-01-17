@@ -8,7 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="myVaccApp_background_green">#30A9D9</color>
-    <color name="myVaccApp_text_green">#022859</color>
-    <color name="myVaccApp_button_green">#9BDAF2</color>
+    <color name="myVaccApp_text_green">#2196F3</color>
+    <color name="myVaccApp_button_green">#3D9EC4</color>
+    <color name="cardview_dark">#D9121212</color>
+    <color name="myVaccApp_background_dark">#121212</color>
 
 </resources>
