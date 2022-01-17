@@ -25,13 +25,15 @@
             android:id="@+id/vaccDelete"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_toRightOf="@id/vaccTitle"
-            android:layout_marginLeft="150dp"
-            android:src="@drawable/delete_img"/>
+            android:layout_below="@id/vaccTitle"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/vaccDate"
+            android:src="@drawable/delete_img" />
 
         <TextView
             android:id="@+id/vaccTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="10dp"
@@ -46,7 +48,7 @@
 
         <TextView
             android:id="@+id/vaccDate"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/vaccTitle"
             android:layout_marginLeft="20dp"

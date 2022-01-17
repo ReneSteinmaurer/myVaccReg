@@ -36,7 +36,7 @@ public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyVaccHolder myVaccHolder, int i) {
-        Log.i("MyVaccAdapter", "VaccVirus: "+ vaccinations.get(i).getVirus());
+        Log.i("MyVaccAdapter", "VaccVirus: " + vaccinations.get(i).getVirus());
 
 
         myVaccHolder.vaccTitle.setText(vaccinations.get(i).getName());
@@ -44,22 +44,24 @@ public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
         myVaccHolder.vaccDate.setText(vaccinations.get(i).getDate());
         myVaccHolder.renewDate.setText("Auffrischung: " + vaccinations.get(i).getRenewDate());
         myVaccHolder.vaccVirus.setText("Schützt vor: " + vaccinations.get(i).getVirus());
-        myVaccHolder.vaccManufacturer.setText("Hersteller: "+ vaccinations.get(i).getManufacturer());
+        myVaccHolder.vaccManufacturer.setText("Hersteller: " + vaccinations.get(i).getManufacturer());
 
+        /**
+         * Dieser Code dient dazu die angelegten Impfungen löschen zu können,
+         * sie werden aus der DB wie auch aus der View gelöscht
+         */
         myVaccHolder.deleteImg.setOnClickListener(v -> {
-            if (vaccinations.size() == 1) {
-                db.vaccinationUserDao().deleteVacc(vaccinations.get(0).name);
-                vaccinations.remove(0);
-                this.notifyItemRemoved(0);
-            } else {
-                db.vaccinationUserDao().deleteVacc(vaccinations.get(i).name);
-                vaccinations.remove(i);
-                this.notifyItemRemoved(i);
-            }
-            myVaccHolder.itemView.setVisibility(View.GONE);
+            db.vaccinationUserDao().deleteVacc(vaccinations.get(i).name);
 
+            //myVaccHolder.itemView.setVisibility(View.GONE);
+            vaccinations.remove(myVaccHolder.getAdapterPosition());
+            notifyItemRemoved(myVaccHolder.getAdapterPosition());
+            notifyItemRangeChanged(myVaccHolder.getAdapterPosition(),vaccinations.size());
         });
 
+        /**
+         * Zeigt weitere Daten zu den Impfungen an
+         */
         myVaccHolder.itemView.setOnClickListener(v -> {
 
             if (myVaccHolder.vaccDesc.getVisibility() == View.GONE) {
