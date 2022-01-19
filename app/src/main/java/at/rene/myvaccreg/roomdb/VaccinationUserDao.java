@@ -13,7 +13,7 @@ public interface VaccinationUserDao {
     @Query("select * from vaccinationuser")
     List<VaccinationUser> getAllVaccinations();
 
-    @Query("delete from vaccinationuser where vaccine=:userInput")
+    @Query("delete from vaccinationuser where vaccination=:userInput")
     void deleteVacc(String userInput);
 
     @Insert

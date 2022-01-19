@@ -1,5 +1,6 @@
 package at.rene.myvaccreg.roomdb;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,9 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class VaccinationRoom {
 
-    @PrimaryKey(autoGenerate = true)
-    public int uid;
-
+    @PrimaryKey @NonNull
     @ColumnInfo(name = "name")
     public String name;
 

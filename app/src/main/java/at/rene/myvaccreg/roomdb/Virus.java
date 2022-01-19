@@ -1,5 +1,6 @@
 package at.rene.myvaccreg.roomdb;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,16 +8,13 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Virus {
 
-    @PrimaryKey(autoGenerate = true)
-    public int uid;
-
-    @ColumnInfo(name = "name")
+    @PrimaryKey @NonNull
     public String name;
 
     @ColumnInfo(name = "desc")
     public String desc;
 
-    @ColumnInfo(name = "cateogry")
+    @ColumnInfo(name = "category")
     public String category;
 
     public Virus() {
