@@ -1,4 +1,4 @@
-package at.rene.myvaccreg.myVacc;
+package at.rene.myvaccreg.allVaccs;
 
 import android.view.View;
 import android.widget.TextView;

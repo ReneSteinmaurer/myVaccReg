@@ -6,28 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".myVacc.MainWindowFragment">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView"
-        android:layout_width="43dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/home_icon"
-        android:backgroundTint="@color/myVaccApp_text_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/roboto_light"
         android:text="@string/title_text"
-        android:textColor="@color/myVaccApp_text_green"
+
+        android:textColor="@color/white"
         android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,12 +26,12 @@
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="40dp"
-        android:text="Meine Impfungen"
-        android:textColor="@color/black"
         android:backgroundTint="@color/myVaccApp_button_green"
         android:onClick="onMyVacc"
+        android:text="Meine Impfungen"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

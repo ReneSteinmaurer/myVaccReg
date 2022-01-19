@@ -19,15 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyVaccReg">
         <activity
-            android:name=".CreateVacc"
-            android:exported="true" />
-        <activity
-            android:name=".ImpExpVacc"
-            android:exported="true" />
-        <activity
-            android:name=".myVacc.MyVacc"
-            android:exported="true" />
-        <activity
             android:name=".myVacc.MainActivity"
             android:exported="true">
             <intent-filter>

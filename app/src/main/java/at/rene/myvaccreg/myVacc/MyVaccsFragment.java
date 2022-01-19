@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.rene.myvaccreg.R;
+import at.rene.myvaccreg.allVaccs.AddVaccineToUser;
 import at.rene.myvaccreg.roomdb.MyVaccRegDb;
 import at.rene.myvaccreg.roomdb.VaccinationRoom;
 import at.rene.myvaccreg.roomdb.VaccinationUser;

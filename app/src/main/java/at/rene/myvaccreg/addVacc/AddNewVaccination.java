@@ -1,4 +1,4 @@
-package at.rene.myvaccreg.myVacc;
+package at.rene.myvaccreg.addVacc;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -38,7 +38,7 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
     private EditText desc;
     private EditText date;
     private EditText manufacturer;
-    private EditText illness;
+    private ArrayAdapter aa;
     private TextView errorView;
     private DatePickerDialog picker;
     private Spinner chooseVirusSpinner;
@@ -60,13 +60,14 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         db = MyVaccRegDb.getDbInstance(getActivity().getApplicationContext());
         allViruses = db.virusDao().getAllViruses();
 
+        // Erstellt Array mit allen Virus-Namen
         allVirusesNames = new String[allViruses.size()];
 
         for (int i = 0; i < allViruses.size(); i++) {
             allVirusesNames[i] = allViruses.get(i).getName();
         }
-        // Buttons und Views hinzufügen
 
+        // Buttons und Views hinzufügen
         name = getActivity().findViewById(R.id.editTextVaccineName);
         desc = getActivity().findViewById(R.id.editTextDescVaccine);
         date = getActivity().findViewById(R.id.editTextDateVaccine);
@@ -76,9 +77,11 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         errorView = getActivity().findViewById(R.id.errorTextview);
         errorView.setVisibility(View.INVISIBLE);
 
+        // setzt die VirusSpinner onClick()
         chooseVirusSpinner.setOnItemSelectedListener(this);
 
-        ArrayAdapter aa = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item, allVirusesNames);
+        // setzt den Array-Adapter für die Dropdown-Liste
+        aa = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item, allVirusesNames);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         chooseVirusSpinner.setAdapter(aa);
@@ -90,6 +93,10 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
 
         Log.i("VACC", "INITIAL");
 
+        /**
+         * OnClick Listener für das date-Feld, es wird der Datepicker aufgerufen und übergibt
+         * die Daten in das Edittext mit einer bestimmten Formatierung
+         */
         date.setOnClickListener(v -> {
             final Calendar cldr = Calendar.getInstance();
             int day = cldr.get(Calendar.DAY_OF_MONTH);
@@ -121,7 +128,15 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
 
     }
 
-    // TODO: Die Krankheit vor der die Impfung schützt muss noch hinzugefügt werden in der DB!
+
+    /**
+     * Dient zur Speicherung der neuen Impfung, aus den Attributen wird eine neue Impfung erstellt
+     * und diese wird in der Datenbank gespeichert.
+     * @param name
+     * @param desc
+     * @param renewDate
+     * @param manufacturer
+     */
     private void saveNewVaccine(String name, String desc, String renewDate, String manufacturer) {
         boolean exists = false;
         MyVaccRegDb myVaccRegDb = MyVaccRegDb.getDbInstance(getActivity().getApplicationContext());
@@ -151,6 +166,10 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         }
     }
 
+    /**
+     * Überprüft ob alle Felder ausgefüllt sind, ist dies nicht der Fall bekommt man false zurück
+     * @return
+     */
     private boolean isFilled() {
         boolean isFilled = false;
         if (!name.getText().toString().equals("") && !desc.getText().toString().equals("") && !date.toString().equals("")
@@ -161,6 +180,9 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
         return isFilled;
     }
 
+    /**
+     * Löscht alle Eingaben des Users
+     */
     private void clearEditText() {
         name.setText("");
         desc.setText("");

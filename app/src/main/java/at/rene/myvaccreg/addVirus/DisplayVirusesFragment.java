@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.rene.myvaccreg.R;
-import at.rene.myvaccreg.data.VirusOLD;
 import at.rene.myvaccreg.roomdb.MyVaccRegDb;
 import at.rene.myvaccreg.roomdb.Virus;
 
@@ -25,7 +24,7 @@ import at.rene.myvaccreg.roomdb.Virus;
  * create an instance of this fragment.
  */
 public class DisplayVirusesFragment extends Fragment {
-    private ArrayList<VirusOLD> virusArrayList;
+    private ArrayList<Virus> virusArrayList;
     private RecyclerView recyclerView;
     private AddVirusAdapter addVirusAdapter;
     private FloatingActionButton addVirus;
@@ -55,6 +54,9 @@ public class DisplayVirusesFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        /**
+         * onClick(), um neue Virusarten anzulegen
+         */
         addVirus.setOnClickListener(v -> {
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.mainFragmentView, newVirusFragment)
@@ -62,7 +64,6 @@ public class DisplayVirusesFragment extends Fragment {
                     .commit();
         });
 
-        // displayUsersVaccines();
         addVirusAdapter = new AddVirusAdapter(getActivity(), virusList);
         recyclerView.setAdapter(addVirusAdapter);
     }
