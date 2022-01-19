@@ -32,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Impfung auswählen"
-        android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

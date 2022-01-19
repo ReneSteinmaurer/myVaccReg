@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import at.rene.myvaccreg.R;
+import at.rene.myvaccreg.myVacc.MainActivity;
 import at.rene.myvaccreg.roomdb.MyVaccRegDb;
 import at.rene.myvaccreg.roomdb.VaccinationRoom;
 
@@ -69,7 +70,7 @@ public class AddVaccineToUser extends Fragment {
 
         allVaccs = db.vaccinationDao().getAllVaccines();
 
-        allVaccsAdapter = new AllVaccsAdpater(getActivity(), allVaccs);
+        allVaccsAdapter = new AllVaccsAdpater((MainActivity) getActivity(), allVaccs);
         recyclerView.setAdapter(allVaccsAdapter);
 
 
