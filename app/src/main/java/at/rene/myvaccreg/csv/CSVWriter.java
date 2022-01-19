@@ -1,4 +1,4 @@
-package at.rene.myvaccreg.roomdb;
+package at.rene.myvaccreg.csv;
 
 import java.io.IOException;
 import java.io.PrintWriter;
