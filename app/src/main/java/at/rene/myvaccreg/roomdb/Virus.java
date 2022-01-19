@@ -19,6 +19,16 @@ public class Virus {
     @ColumnInfo(name = "cateogry")
     public String category;
 
+    public Virus() {
+        this("","","");
+    }
+
+    public Virus(String name, String desc, String category) {
+        this.name = name;
+        this.desc = desc;
+        this.category = category;
+    }
+
     public String getName() {
         return name;
     }
