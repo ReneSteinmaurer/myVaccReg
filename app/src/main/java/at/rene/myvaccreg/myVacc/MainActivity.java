@@ -1,19 +1,15 @@
 package at.rene.myvaccreg.myVacc;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
-import java.util.ArrayList;
 
 import at.rene.myvaccreg.R;
+import at.rene.myvaccreg.addVacc.AddNewVaccination;
 import at.rene.myvaccreg.addVirus.DisplayVirusesFragment;
-import at.rene.myvaccreg.data.Vaccination;
 import at.rene.myvaccreg.roomdb.MyVaccRegDb;
 import at.rene.myvaccreg.roomdb.VaccinationRoom;
 
@@ -23,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private MyVaccsFragment myVaccsFragment;
     private DisplayVirusesFragment displayVirusesFragment;
     private LinearLayout vaccines;
-    private Intent mainIntent;
-    private Intent intent;
-    private Vaccination vaccClass;
-    private ArrayList<Vaccination> vaccinations;
-    private AppCompatButton displayFood;
     private MyVaccRegDb db;
 
     @Override
@@ -53,26 +44,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Übergibt die Daten an die MyVacc Klasse
-     *
+     * Öffnet das MyVaccFragment, dort werden alle Impfungen des Users angezeigt
      * @param view
      */
     public void onMyVacc(View view) {
-        /*intent = new Intent(this, MyVacc.class);
-        intent.putExtra("VaccinationList", vaccinations);
-
-        startActivity(intent);*/
-
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.mainFragmentView, myVaccsFragment)
                 .addToBackStack(null)
                 .commit();
     }
 
+    /**
+     * Exportiert oder Importiert Daten mithilfe einer CSV-Datei
+     * @param view
+     */
     public void onImpExpVacc(View view) {
 
     }
 
+    /**
+     * Öffnet das AddNewVaccination Fragment, mit diesem kann man eine neue Impfung anlegen
+     * @param view
+     */
     public void onAddVacc(View view) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.mainFragmentView, addNewVaccination)
@@ -80,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    /**
+     * Öffnet das DisplayVirusesFragment, mit diesem kann man einen neuen Virus anlegen.
+     * Bereits angelegte Viren werden auch angezeigt
+     * @param view
+     */
     public void onAddVirus(View view) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.mainFragmentView, displayVirusesFragment)
@@ -87,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    /**
+     * Speichert Test-Daten in die Datenbank
+     * @param view
+     */
     public void onTestData(View view) {
         db = MyVaccRegDb.getDbInstance(getApplicationContext());
         if (db.vaccinationDao().getAllVaccines().isEmpty()) {

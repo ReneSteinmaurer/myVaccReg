@@ -1,4 +1,4 @@
-package at.rene.myvaccreg.myVacc;
+package at.rene.myvaccreg.allVaccs;
 
 import android.content.Context;
 import android.util.Log;
