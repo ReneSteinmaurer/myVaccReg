@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +30,6 @@ public class MyVaccsFragment extends Fragment {
     private RecyclerView recyclerView;
     private MyVaccAdapter myVaccAdapter;
     private FloatingActionButton addVaccines;
-    private ImageView deleteImg;
 
     private AddVaccineToUser addVaccToUserf;
     private List<VaccinationUser> userVaccs;
@@ -79,9 +78,10 @@ public class MyVaccsFragment extends Fragment {
 
         addVaccines.setOnClickListener(v ->
                 getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.mainFragmentView, addVaccToUserf)
-                .addToBackStack(null)
-                .commit());
+                        .replace(R.id.mainFragmentView, addVaccToUserf)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .addToBackStack(null)
+                        .commit());
 
         // Buttons und Views hinzufügen
     }

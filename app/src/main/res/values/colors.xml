@@ -12,5 +12,7 @@
     <color name="myVaccApp_button_green">#3D9EC4</color>
     <color name="cardview_dark">#D9121212</color>
     <color name="myVaccApp_background_dark">#121212</color>
+    <color name="myVaccApp_background_light">#EFEFF4</color>
+    <color name="myVaccApp_green">#61E09A</color>
 
 </resources>

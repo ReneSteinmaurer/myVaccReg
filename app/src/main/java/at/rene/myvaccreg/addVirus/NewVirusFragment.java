@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,7 @@ public class NewVirusFragment extends Fragment {
     private EditText name;
     private EditText desc;
     private EditText category;
+    private TextView errorMsg;
 
     private MyVaccRegDb db;
     private List<Virus> virusList;
@@ -51,6 +53,8 @@ public class NewVirusFragment extends Fragment {
         name = getActivity().findViewById(R.id.editTextVirusName);
         desc = getActivity().findViewById(R.id.editTextVirusDesc);
         category = getActivity().findViewById(R.id.editTextVirusCategory);
+        errorMsg = getActivity().findViewById(R.id.virusErrorMsg);
+        errorMsg.setVisibility(View.INVISIBLE);
 
         /**
          * Wenn alles ausgefüllt ist wird ein neuer Virus in der Datenbank gespeichert
@@ -69,16 +73,31 @@ public class NewVirusFragment extends Fragment {
                         exists = true;
                 }
 
-                if (!exists) db.virusDao().insertVirus(virus);
+                if (!exists) {
+                    db.virusDao().insertVirus(virus);
+                    clearFields();
+                    errorMsg.setVisibility(View.INVISIBLE);
+                }
                 else {
                     Log.i("Virus", "Virus nicht angelegt!");
                     // TODO: wenn Virus schon vorhanden dann -->
+                    errorMsg.setText("Virus schon vorhanden!");
+                    errorMsg.setVisibility(View.VISIBLE);
                 }
+            } else {
+                errorMsg.setText("Alle Felder müssen ausgefüllt sein!");
+                errorMsg.setVisibility(View.VISIBLE);
             }
 
         });
 
 
+    }
+
+    private void clearFields() {
+        name.setText("");
+        desc.setText("");
+        category.setText("");
     }
 
     /**

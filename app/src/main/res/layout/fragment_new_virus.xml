@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addVirus.NewVirusFragment"
-    android:background="@color/myVaccApp_background_dark">
+    tools:context=".addVirus.NewVirusFragment">
 
     <TextView
         android:id="@+id/textView2"
@@ -23,15 +22,16 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/addNewVirusBtn"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginBottom="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="80dp"
         android:clickable="true"
         android:src="@drawable/add_floatbutton"
         android:text="+   hinzufügen"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/virusErrorMsg" />
 
 
     <EditText
@@ -81,6 +81,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextVirusCategory" />
+
+    <TextView
+        android:id="@+id/virusErrorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Alle Felder müssen ausgefüllt sein!"
+        android:textColor="#ff0033"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/addNewVirusBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextVirusDesc" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

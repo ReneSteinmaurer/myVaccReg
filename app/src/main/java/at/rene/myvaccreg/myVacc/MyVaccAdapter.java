@@ -53,7 +53,6 @@ public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
         myVaccHolder.deleteImg.setOnClickListener(v -> {
             db.vaccinationUserDao().deleteVacc(vaccinations.get(i).name);
 
-            //myVaccHolder.itemView.setVisibility(View.GONE);
             vaccinations.remove(myVaccHolder.getAdapterPosition());
             notifyItemRemoved(myVaccHolder.getAdapterPosition());
             notifyItemRangeChanged(myVaccHolder.getAdapterPosition(),vaccinations.size());

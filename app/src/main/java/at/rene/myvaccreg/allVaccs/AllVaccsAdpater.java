@@ -1,6 +1,5 @@
 package at.rene.myvaccreg.allVaccs;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,17 +13,20 @@ import java.util.Date;
 import java.util.List;
 
 import at.rene.myvaccreg.R;
+import at.rene.myvaccreg.myVacc.MainActivity;
+import at.rene.myvaccreg.myVacc.MyVaccsFragment;
 import at.rene.myvaccreg.roomdb.MyVaccRegDb;
 import at.rene.myvaccreg.roomdb.VaccinationRoom;
 import at.rene.myvaccreg.roomdb.VaccinationUser;
 
 public class AllVaccsAdpater extends RecyclerView.Adapter<AllVaccsHolder> {
-    private Context context;
+    private MainActivity context;
     private List<VaccinationRoom> vaccinations;
     private MyVaccRegDb db;
+    private MyVaccsFragment myVaccsFragment;
     private List<VaccinationUser> allVaccs;
 
-    public AllVaccsAdpater(Context context, List<VaccinationRoom> vaccinations) {
+    public AllVaccsAdpater(MainActivity context, List<VaccinationRoom> vaccinations) {
         db = MyVaccRegDb.getDbInstance(context.getApplicationContext());
         this.context = context;
         this.vaccinations = vaccinations;
@@ -48,6 +50,8 @@ public class AllVaccsAdpater extends RecyclerView.Adapter<AllVaccsHolder> {
         allVaccsHolder.vaccRenewDate.setText("Auffrischung: " + vaccinations.get(i).getRenewDate());
         allVaccsHolder.vaccManufacturer.setText("Hersteller: " + vaccinations.get(i).getManufacturer());
 
+        myVaccsFragment = new MyVaccsFragment();
+
         allVaccsHolder.itemView.setOnClickListener(v -> {
             boolean hasVaccine = false;
             Log.i("OnClick", "VaccHolder Onclick!");
@@ -67,8 +71,10 @@ public class AllVaccsAdpater extends RecyclerView.Adapter<AllVaccsHolder> {
             }
 
             // Wenn der User die Impfung noch nicht hat wird sie eingefügt
-            if (!hasVaccine) db.vaccinationUserDao().addVaccination(u);
-
+            if (!hasVaccine) {
+                db.vaccinationUserDao().addVaccination(u);
+                allVaccsHolder.imgView.setImageResource(R.drawable.ic_baseline_done_24);
+            }
         });
     }
 
