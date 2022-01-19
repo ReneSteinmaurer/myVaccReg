@@ -57,6 +57,7 @@ public class AllVaccsAdpater extends RecyclerView.Adapter<AllVaccsHolder> {
 
             VaccinationUser u = new VaccinationUser();
             u.setVaccination(vaccinations.get(i).getName());
+
             // Setzt das heutige Datum als Impftermin
             u.setDate(formatter.format(date));
 
@@ -71,6 +72,10 @@ public class AllVaccsAdpater extends RecyclerView.Adapter<AllVaccsHolder> {
         });
     }
 
+    /**
+     * Die Liste mit den Impfungen, wird neu gesetzt mit den Werten der gefilterten Liste
+     * @param filteredList
+     */
     public void filteredList(List<VaccinationRoom> filteredList) {
         vaccinations = filteredList;
         notifyDataSetChanged();
