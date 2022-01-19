@@ -322,7 +322,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../../Programme/Android/Sdk/icons/material/materialicons/done/baseline_done_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../../Programme/Android/Sdk/icons/material/materialicons/coronavirus/baseline_coronavirus_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -332,8 +332,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="35a716" />
-                            <entry key="outputName" value="ic_baseline_done_24" />
+                            <entry key="color" value="34aad9" />
+                            <entry key="outputName" value="ic_baseline_coronavirus_24" />
                             <entry key="sourceFile" value="D:\Schule\5AHIT\SEW HELF\06_myVaccReg" />
                           </map>
                         </option>
