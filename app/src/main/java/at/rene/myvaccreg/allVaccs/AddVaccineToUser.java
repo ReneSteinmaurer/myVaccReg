@@ -60,6 +60,7 @@ public class AddVaccineToUser extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+                // Nachdem sich die Eingabe geändert hat, wird filter() ausgeführt
                 filter(s.toString());
             }
         });
@@ -76,8 +77,8 @@ public class AddVaccineToUser extends Fragment {
     }
 
     /**
-     * Übernimmt die Funktion der Suche, der Algorithmus schaut ob die namen übereinstimmen,
-     * wenn ja, stellt die Funktion eine Liste aus der Infrage Stehenden Impfungen zusammen.
+     * Übernimmt die Funktion der Suche, der Algorithmus schaut ob die Namen übereinstimmen,
+     * wenn ja, stellt die Funktion eine Liste aus der Infrage stehenden Impfungen zusammen.
      * Diese Liste wird dem Adapter mitgegeben.
      * @param text
      */

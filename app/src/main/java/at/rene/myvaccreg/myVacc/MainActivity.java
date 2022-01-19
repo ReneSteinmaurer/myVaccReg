@@ -25,9 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //mainIntent = new Intent(this, MainActivity.class);
-        //vaccClass = new Vaccination();
-        //vaccinations = vaccClass.initVaccines();
 
         mainWindowFragment = new MainWindowFragment();
         myVaccsFragment = new MyVaccsFragment();
@@ -35,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         displayVirusesFragment = new DisplayVirusesFragment();
 
         vaccines = findViewById(R.id.myVaccsRecyclerView);
-
-        // Log.d("MainActivity: ","Array index(6): "+vaccinations.get(6));
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.mainFragmentView, mainWindowFragment)

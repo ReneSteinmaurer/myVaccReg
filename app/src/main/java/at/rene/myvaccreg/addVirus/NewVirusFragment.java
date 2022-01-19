@@ -45,13 +45,16 @@ public class NewVirusFragment extends Fragment {
         db = MyVaccRegDb.getDbInstance(getActivity().getApplicationContext());
 
         virusList = db.virusDao().getAllViruses();
-        // Buttons und Views hinzufügen
 
+        // Buttons und Views hinzufügen
         addVirusBtn = getActivity().findViewById(R.id.addNewVirusBtn);
         name = getActivity().findViewById(R.id.editTextVirusName);
         desc = getActivity().findViewById(R.id.editTextVirusDesc);
         category = getActivity().findViewById(R.id.editTextVirusCategory);
 
+        /**
+         * Wenn alles ausgefüllt ist wird ein neuer Virus in der Datenbank gespeichert
+         */
         addVirusBtn.setOnClickListener(v -> {
             Log.i("Virus", "onClick Event");
 
@@ -78,6 +81,10 @@ public class NewVirusFragment extends Fragment {
 
     }
 
+    /**
+     * Überprüft ob alle Felder ausgefüllt sind, wenn ja wird true zurückgeliefert
+     * @return
+     */
     private boolean isFilled() {
         boolean ret = false;
         if (!name.getText().toString().equals("") && !desc.getText().toString().equals("") &&

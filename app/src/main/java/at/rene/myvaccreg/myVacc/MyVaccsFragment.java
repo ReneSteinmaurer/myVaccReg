@@ -55,7 +55,6 @@ public class MyVaccsFragment extends Fragment {
 
 
         addVaccines = getActivity().findViewById(R.id.add_button);
-        //vaccines = getActivity().findViewById(R.id.myVaccsRecyclerView);
         recyclerView = getActivity().findViewById(R.id.myVaccsRecyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
