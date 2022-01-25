@@ -52,6 +52,8 @@ dependencies {
     //picasso library to retrive images
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation 'com.opencsv:opencsv:4.6'
+
     def room_version = "2.4.1"
 
     implementation "androidx.room:room-runtime:$room_version"

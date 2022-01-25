@@ -1,5 +1,8 @@
 package at.rene.myvaccreg.myVacc;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -8,18 +11,23 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.io.FileNotFoundException;
+
 import at.rene.myvaccreg.R;
 import at.rene.myvaccreg.addVacc.AddNewVaccination;
 import at.rene.myvaccreg.addVirus.DisplayVirusesFragment;
+import at.rene.myvaccreg.csv.ImportExportActivity;
 import at.rene.myvaccreg.roomdb.MyVaccRegDb;
 import at.rene.myvaccreg.roomdb.VaccinationRoom;
 import at.rene.myvaccreg.roomdb.Virus;
+import at.rene.myvaccreg.settings.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
     private MainWindowFragment mainWindowFragment;
     private AddNewVaccination addNewVaccination;
     private MyVaccsFragment myVaccsFragment;
     private DisplayVirusesFragment displayVirusesFragment;
+    private SettingsFragment settingsFragment;
     private LinearLayout vaccines;
     private MyVaccRegDb db;
 
@@ -32,8 +40,15 @@ public class MainActivity extends AppCompatActivity {
         myVaccsFragment = new MyVaccsFragment();
         addNewVaccination = new AddNewVaccination();
         displayVirusesFragment = new DisplayVirusesFragment();
+        settingsFragment = new SettingsFragment();
 
         vaccines = findViewById(R.id.myVaccsRecyclerView);
+
+        SharedPreferences sharedPref = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putBoolean(getString(R.string.saved_only_latest_vaccs),false);
+        editor.apply();
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.mainFragmentView, mainWindowFragment)
@@ -43,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Öffnet das MyVaccFragment, dort werden alle Impfungen des Users angezeigt
+     *
      * @param view
      */
     public void onMyVacc(View view) {
@@ -55,14 +71,17 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Exportiert oder Importiert Daten mithilfe einer CSV-Datei
+     *
      * @param view
      */
-    public void onImpExpVacc(View view) {
-
+    public void onImpExpVacc(View view) throws FileNotFoundException {
+        Intent startImpExpVacc = new Intent(getApplicationContext(), ImportExportActivity.class);
+        startActivity(startImpExpVacc);
     }
 
     /**
      * Öffnet das AddNewVaccination Fragment, mit diesem kann man eine neue Impfung anlegen
+     *
      * @param view
      */
     public void onAddVacc(View view) {
@@ -76,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Öffnet das DisplayVirusesFragment, mit diesem kann man einen neuen Virus anlegen.
      * Bereits angelegte Viren werden auch angezeigt
+     *
      * @param view
      */
     public void onAddVirus(View view) {
@@ -86,8 +106,17 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    public void onSettings(View view) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.mainFragmentView, settingsFragment)
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
+    }
+
     /**
      * Speichert Test-Daten in die Datenbank
+     *
      * @param view
      */
     public void onTestData(View view) {
@@ -95,30 +124,29 @@ public class MainActivity extends AppCompatActivity {
         if (db.vaccinationDao().getAllVaccines().isEmpty()) {
             Toast.makeText(this, "Daten erfolgreich geladen!", Toast.LENGTH_SHORT).show();
 
-            VaccinationRoom covid19 = new VaccinationRoom("Covid 19-Pfizer","COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
-                    " ", "6-12-2022", "SARS-CoV-2","Biontech");
+            VaccinationRoom covid19 = new VaccinationRoom("Covid 19-Pfizer", "COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
+                    " ", "6-12-2022", "SARS-CoV-2", "Biontech");
 
-            VaccinationRoom covid191 = new VaccinationRoom("Covid 19-Moderna","COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
-                    " ", "6-12-2022", "SARS-CoV-2","Moderna");
+            VaccinationRoom covid191 = new VaccinationRoom("Covid 19-Moderna", "COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
+                    " ", "6-12-2022", "SARS-CoV-2", "Moderna");
 
-            VaccinationRoom covid192 = new VaccinationRoom("Covid 19-Sputnik","COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
-                    " ", "6-12-2022", "SARS-CoV-2","Sputnik");
+            VaccinationRoom covid192 = new VaccinationRoom("Covid 19-Sputnik", "COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
+                    " ", "6-12-2022", "SARS-CoV-2", "Sputnik");
 
-            VaccinationRoom covid193 = new VaccinationRoom("Covid 19-Astrazenica","COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
-                    " ", "6-12-2022", "SARS-CoV-2","Astrazenica");
+            VaccinationRoom covid193 = new VaccinationRoom("Covid 19-Astrazenica", "COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
+                    " ", "6-12-2022", "SARS-CoV-2", "Astrazenica");
 
-            VaccinationRoom ebola = new VaccinationRoom("rVSV-ZEBOV","Die Ebolaviren verursachen das Ebolafieber. Neben dem Menschen infizieren sie andere Primaten und lösen bei ihnen ein hämorrhagisches Fieber aus.",
-                    " ", "9-8-2026", "Ebola","Bavarian Nordic");
+            VaccinationRoom ebola = new VaccinationRoom("rVSV-ZEBOV", "Die Ebolaviren verursachen das Ebolafieber. Neben dem Menschen infizieren sie andere Primaten und lösen bei ihnen ein hämorrhagisches Fieber aus.",
+                    " ", "9-8-2026", "Ebola", "Bavarian Nordic");
 
-            VaccinationRoom herpesV = new VaccinationRoom("Herpes zoster","Herpes zoster (Gürtelrose) ist eine Viruserkrankung, die bei Menschen auftritt, die zuvor an Windpocken erkrankt sind. Das Windpocken-Virus (Varicella-zoster-Virus) kann im Körper jahrelang überleben. Wird es reaktiviert, entsteht eine Gürtelrose",
-                    " ", "21-5-2034", "Herpesviridae","Biontech");
+            VaccinationRoom herpesV = new VaccinationRoom("Herpes zoster", "Herpes zoster (Gürtelrose) ist eine Viruserkrankung, die bei Menschen auftritt, die zuvor an Windpocken erkrankt sind. Das Windpocken-Virus (Varicella-zoster-Virus) kann im Körper jahrelang überleben. Wird es reaktiviert, entsteht eine Gürtelrose",
+                    " ", "21-5-2034", "Herpesviridae", "Biontech");
 
-            VaccinationRoom influenzaV = new VaccinationRoom("Influenza Spaltimpfstoff","Die Ständige Impfkommission (STIKO) empfiehlt die jährliche Impfung gegen Grippe für alle, die ein erhöhtes Risiko haben, besonders schwer zu erkranken. Hierzu gehören Menschen ab 60 Jahre, chronisch Kranke jeden Alters, Schwangere sowie Bewohner von Alten- und Pflegeheimen.",
-                    " ", "10-9-2023", "Saisionale Grippe","Bavarian Nordic");
+            VaccinationRoom influenzaV = new VaccinationRoom("Influenza Spaltimpfstoff", "Die Ständige Impfkommission (STIKO) empfiehlt die jährliche Impfung gegen Grippe für alle, die ein erhöhtes Risiko haben, besonders schwer zu erkranken. Hierzu gehören Menschen ab 60 Jahre, chronisch Kranke jeden Alters, Schwangere sowie Bewohner von Alten- und Pflegeheimen.",
+                    " ", "10-9-2023", "Saisionale Grippe", "Bavarian Nordic");
 
-            VaccinationRoom masernV = new VaccinationRoom("Masern Impfung","Die Maser-Mumps-Röteln-Impfung ist ein Lebendimpfstoff. Nach zweimaliger Impfung besteht eine lang anhaltende Immunität. ",
-                    " ", "3-4-2030", "Masern","A.C.A. Müller ADAG Pharma AG");
-
+            VaccinationRoom masernV = new VaccinationRoom("Masern Impfung", "Die Maser-Mumps-Röteln-Impfung ist ein Lebendimpfstoff. Nach zweimaliger Impfung besteht eine lang anhaltende Immunität. ",
+                    " ", "3-4-2030", "Masern", "A.C.A. Müller ADAG Pharma AG");
 
 
             Virus covid = new Virus("Covid 19", "COVID-19 ist eine meldepflichtige Infektionskrankheit. Sie wird verursacht vom Coronavirus SARS-CoV-2 und hat ein breites, unspezifisches Symptomspektrum.",
@@ -157,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
             db.virusDao().insertVirus(influenza);
             db.virusDao().insertVirus(hiv);
             db.virusDao().insertVirus(masern);
-        } else Toast.makeText(this, "Laden fehlgeschlagen, bereits vorhanden", Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(this, "Laden fehlgeschlagen, bereits vorhanden", Toast.LENGTH_SHORT).show();
 
 
     }

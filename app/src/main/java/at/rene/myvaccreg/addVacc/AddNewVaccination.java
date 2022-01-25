@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -55,12 +54,19 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        // löscht die gesetzten Daten
+        clearEditText();
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         String[] allVirusesNames;
         db = MyVaccRegDb.getDbInstance(getActivity().getApplicationContext());
         allViruses = db.virusDao().getAllViruses();
 
-        // Erstellt Array mit allen Virus-Namen
+        // erstellt Array mit allen Virus-Namen
         allVirusesNames = new String[allViruses.size()];
 
         for (int i = 0; i < allViruses.size(); i++) {
@@ -102,14 +108,11 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
             int day = cldr.get(Calendar.DAY_OF_MONTH);
             int month = cldr.get(Calendar.MONTH);
             int year = cldr.get(Calendar.YEAR);
+
             // date picker dialog
             picker = new DatePickerDialog(getActivity(),
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                        }
-                    }, year, month, day);
+                    (view1, year1, monthOfYear, dayOfMonth) ->
+                            date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year1), year, month, day);
             picker.show();
         });
 
@@ -123,9 +126,7 @@ public class AddNewVaccination extends Fragment implements AdapterView.OnItemSel
                 errorView.setVisibility(View.VISIBLE);
                 Log.i("VACC", "ERROR");
             }
-
         });
-
     }
 
 
