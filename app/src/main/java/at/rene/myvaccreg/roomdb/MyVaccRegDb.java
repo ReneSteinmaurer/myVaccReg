@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 
-@Database(entities = {VaccinationRoom.class, VaccinationUser.class, Virus.class}, version = 34)
+@Database(entities = {VaccinationRoom.class, VaccinationUser.class, Virus.class}, version = 35)
 
 public abstract class MyVaccRegDb extends RoomDatabase {
 
