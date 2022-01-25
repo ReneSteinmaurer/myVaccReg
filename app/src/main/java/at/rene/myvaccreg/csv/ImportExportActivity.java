@@ -60,13 +60,8 @@ public class ImportExportActivity extends AppCompatActivity {
         String csvHeader = "Impfstoff;Virus;Letzte Impfung;Auffrischungsimpfung\n";
         String entry;
 
-        //Write Vaccination CSV File
         try {
             fos = this.openFileOutput("vaccines.csv", this.MODE_PRIVATE);
-
-
-            // getVaccinations(mPreferences.getInt(SHOW_VACCINATION_TYPE, 4));
-
             fos.write(csvHeader.getBytes());
 
             List<VaccinationRoom> vaccinations = new ArrayList<>();
@@ -75,7 +70,7 @@ public class ImportExportActivity extends AppCompatActivity {
 
             for (VaccinationRoom vaccination : vaccinations) {
                 entry = vaccination.getName() + ";" + vaccination.getVirus()
-                        + ";" + vaccination.getDate() + "\n";
+                        + ";" + vaccination.getDate() + ";" + vaccination.getRenewDate() + "\n";
                 fos.write(entry.getBytes());
                 fos.flush();
             }
@@ -92,9 +87,7 @@ public class ImportExportActivity extends AppCompatActivity {
 
         try {
             InputStream inputStream = this.openFileInput("vaccines.csv");
-
             CSVParser csvParser = new CSVParserBuilder().withSeparator(';').build();
-
             CSVReader csvReader = new CSVReaderBuilder(new InputStreamReader(inputStream)).withCSVParser(csvParser).build();
 
             String[] line;
