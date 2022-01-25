@@ -54,6 +54,8 @@ public class SettingsFragment extends Fragment {
         csvName = getActivity().findViewById(R.id.editCsvName);
         saveName = getActivity().findViewById(R.id.csvNameSaveButton);
 
+        csvName.setText("vaccines.csv");
+
         onlyNewestVaccs.setOnClickListener(v -> {
             if (onlyNewestVaccs.isChecked())
                 editor.putBoolean(getString(R.string.saved_only_latest_vaccs), true);
