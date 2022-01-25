@@ -1,6 +1,9 @@
 package at.rene.myvaccreg.myVacc;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +55,9 @@ public class MyVaccsFragment extends Fragment {
         displayedVaccs = new ArrayList<>();
         db = MyVaccRegDb.getDbInstance(getActivity().getApplicationContext());
 
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+
+        boolean isLatest = sharedPref.getBoolean(getString(R.string.saved_only_latest_vaccs), false);
 
         addVaccines = getActivity().findViewById(R.id.add_button);
         recyclerView = getActivity().findViewById(R.id.myVaccsRecyclerView);
@@ -82,6 +88,11 @@ public class MyVaccsFragment extends Fragment {
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                         .addToBackStack(null)
                         .commit());
+
+        // wenn isLatest == true ist dann werden nur die neusten Impfungen angezeigt
+        if (isLatest) myVaccAdapter.filteredList(myVaccAdapter.getLatestVaccinations(allVaccs));
+
+        Log.i("isLatest: ", String.valueOf(isLatest));
 
         // Buttons und Views hinzufügen
     }

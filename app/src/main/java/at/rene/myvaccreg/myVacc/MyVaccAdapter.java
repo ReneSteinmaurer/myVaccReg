@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import at.rene.myvaccreg.R;
@@ -38,7 +39,6 @@ public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
     public void onBindViewHolder(@NonNull MyVaccHolder myVaccHolder, int i) {
         Log.i("MyVaccAdapter", "VaccVirus: " + vaccinations.get(i).getVirus());
 
-
         myVaccHolder.vaccTitle.setText(vaccinations.get(i).getName());
         myVaccHolder.vaccDesc.setText(vaccinations.get(i).getDesc());
         myVaccHolder.vaccDate.setText(vaccinations.get(i).getDate());
@@ -55,7 +55,7 @@ public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
 
             vaccinations.remove(myVaccHolder.getAdapterPosition());
             notifyItemRemoved(myVaccHolder.getAdapterPosition());
-            notifyItemRangeChanged(myVaccHolder.getAdapterPosition(),vaccinations.size());
+            notifyItemRangeChanged(myVaccHolder.getAdapterPosition(), vaccinations.size());
         });
 
         /**
@@ -76,6 +76,61 @@ public class MyVaccAdapter extends RecyclerView.Adapter<MyVaccHolder> {
             }
 
         });
+    }
+
+    /**
+     * Die Liste mit den Impfungen, wird neu gesetzt mit den Werten der gefilterten Liste
+     *
+     * @param filteredList
+     */
+    public void filteredList(List<VaccinationRoom> filteredList) {
+        vaccinations = filteredList;
+        notifyDataSetChanged();
+    }
+
+    public List<VaccinationRoom> getLatestVaccinations(List<VaccinationRoom> allVaccs) {
+        List<VaccinationRoom> latestVaccs = new ArrayList<>();
+        List<VaccinationRoom> usedVaccs = new ArrayList<>();
+        String[] datav1;
+        String[] datav2;
+        boolean isGreater;
+
+
+        for (VaccinationRoom v : allVaccs) {
+            if (v.getName().contains(".")) usedVaccs.add(v);
+            if (v.getDate().contains("-")) latestVaccs.add(v);
+        }
+
+        for (VaccinationRoom v : usedVaccs) {
+            isGreater = true;
+            for (VaccinationRoom v2 : usedVaccs) {
+                datav1 = getArray(v.getName());
+                datav2 = getArray(v2.getName());
+
+                if (Integer.parseInt(datav1[0]) < Integer.parseInt(datav2[0])) isGreater = false;
+            }
+
+            if (!isGreater) latestVaccs.remove(v);
+        }
+
+        return latestVaccs;
+    }
+
+    /**
+     * Gibt ein String-Array zurück, dieses besteht entweder aus zwei oder einem String.
+     * Beispiel: 1. Covid 19 Impfung --> data[0]: 1. data[1]: Covid 19 Impfung
+     *
+     * @param s Name der Impfung
+     * @return Array mit 1 oder 2 Werten
+     */
+    private String[] getArray(String s) {
+        String[] data;
+        if (s.contains(".")) data = s.split("\\.");
+        else {
+            data = new String[2];
+            data[1] = s;
+        }
+        return data;
     }
 
     @Override
